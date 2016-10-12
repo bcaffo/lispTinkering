@@ -12,6 +12,8 @@
       )
 )
 
+(defun sum (x)
+  (sump x 1))
 
 (defun sd (x)
   (sqrt 
@@ -71,5 +73,18 @@
       )
 )
 
+(defun cov (x y)
+  (if (not (equal (length x) (length y)))
+      nil
+      (/ (- (sum (prod x y)) (* (length x) (mean x) (mean y)))
+	 (- (length x) 1))
+      )
+)
 
+(defun cor (x y)
 
+(defun linreg (x y)
+  (if (not (equal (length x) (length y))) nil
+      (cons 
+       (
+)
