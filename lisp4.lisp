@@ -73,18 +73,36 @@
       )
 )
 
+;; (defun cov (x y)
+;;   (if (not (equal (length x) (length y)))
+;;       nil
+;;       (/ (- (sum (prod x y)) (* (length x) (mean x) (mean y)))
+;; 	 (- (length x) 1))
+;;       )
+;; )
+
 (defun cov (x y)
-  (if (not (equal (length x) (length y)))
-      nil
-      (/ (- (sum (prod x y)) (* (length x) (mean x) (mean y)))
-	 (- (length x) 1))
-      )
+  (/ (sum (prod (demean x) (demean y))) (- (length x) 1))
 )
 
+(defun variance  (x) (cov x x) )
+(defun sd (x) (sqrt (var x)))
+
+
 (defun cor (x y)
+  (/ (/ (cov x y) (sd x)) (sd y))
+)
+
+
+(defun linreg_slope (x y) 
+  (/ 
+   (* (cor y x) (sd y)) 
+   (sd x)
+   )
+)
 
 (defun linreg (x y)
   (if (not (equal (length x) (length y))) nil
-      (cons 
+      (
        (
 )
