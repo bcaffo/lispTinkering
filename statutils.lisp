@@ -13,7 +13,7 @@
 ;)
 
 (defun cov (x y)
-  (cons (sum (prod (demean x) (demean y))) (- (length x) 1))
+  (/ (sum (prod (demean x) (demean y))) (- (length x) 1))
 )
 
 ;; covariance function using the shortcut formula
@@ -60,11 +60,17 @@
    )
 )
 
+(defun linreg_itc (x y b)
+  (- (mean y) (* (mean x) b))
+)
+
+
 (defun linreg (x y)
-  (if (not (equal (length x) (length y))) nil
-      (let 
-       (
-	
-	)
-	)
+;  (if (not (equal (length x) (length y))) nil	
+  (let 
+      ( 
+       (b (linreg_slope x y))
+       )
+    (cons  (linreg_itc x y b) b)
+   )
 )
